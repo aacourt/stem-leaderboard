@@ -1,0 +1,166 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script >
+
+        fetch("scores.json")
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(scores){
+                console.log(scores)
+                
+                scores
+                    .sort(function (a,b) {
+                        return b.score - a.score
+                    })
+                    .forEach(function(score) {
+                        createRow(score.name, score.school, score.game, score.score )
+                    })
+            })
+
+        
+        // function updateTable(){
+        //     var scores = JSON.parse(localStorage.getItem("scores"))
+            
+        //     scores
+        //         .sort(function (a,b) {
+        //             return b.score - a.score
+        //         })
+        //         .forEach(function(score) {
+        //             createRow(score.name, score.school, score.game, score.score )
+        //         })
+        // }
+        
+            
+        function addRow() {
+            name= document.getElementById('name').value;
+            school= document.getElementById('school').value;
+            game= document.getElementById('game').value;
+            score= document.getElementById('score').value;
+
+            createRow(name, school, game, score)
+        }
+
+   function createRow(name, school, game, score)
+{
+         tabBody=document.getElementsByTagName("tbody").item(0);
+         row=document.createElement("tr");
+         cell1 = document.createElement("td");
+         cell2 = document.createElement("td");
+         cell3 = document.createElement("td");
+         cell4 = document.createElement("td");
+
+        // nameatt = document.createAttribute("contenteditable");
+        // nameatt.value='true';
+        // schoolatt = document.createAttribute("contenteditable");
+        // schoolatt.value='true';
+        // gameatt = document.createAttribute("contenteditable");
+        // gameatt.value='true';
+        // scoreatt = document.createAttribute("contenteditable");
+        // scoreatt.value='true';
+
+
+        // cell1.setAttributeNode(nameatt);
+        // cell2.setAttributeNode(schoolatt);
+        // cell3.setAttributeNode(gameatt);
+        // cell4.setAttributeNode(scoreatt);
+
+         textnode1=document.createTextNode(name);
+         textnode2=document.createTextNode(school);
+         textnode3=document.createTextNode(game);
+         textnode4=document.createTextNode(score);
+         cell1.appendChild(textnode1);
+         cell2.appendChild(textnode2);
+         cell3.appendChild(textnode3);
+         cell4.appendChild(textnode4);
+         row.appendChild(cell1);
+         row.appendChild(cell2);
+         row.appendChild(cell3);
+         row.appendChild(cell4);
+         tabBody.appendChild(row);
+
+         document.getElementById('name').value = '';
+         document.getElementById('school').value = '';
+         document.getElementById('game').value = '';
+         document.getElementById('score').value = '';
+}
+
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("scoretable");
+        switching = true;
+        //Set the sorting direction to ascending:
+        dir = "asc"; 
+        while (switching) {
+            //start by saying: no switching is done:
+             switching = false;
+            rows = table.getElementsByTagName("TR");
+
+            /*Loop through all table rows (except the
+            first, which contains table headers):*/
+            for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            /*check if the two rows should switch place,
+            based on the direction, asc or desc:*/
+            if (dir == "asc") {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch= true;
+            break;
+            }
+        } else if (dir == "desc") {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            //if so, mark as a switch and break the loop:
+            shouldSwitch= true;
+            break;
+            }
+        }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      //Each time a switch is done, increase this count by 1:
+      switchcount ++; 
+    } else {
+      /*If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again.*/
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+    </script>
+
+</head>
+<body>
+    <img src="spaceinv.jpg" class="space">
+    <img src="ghost.png" class="pacman">
+    <h1>Leaderboard!</h1>
+
+    <table id="scoretable" width="100%">
+        <tr class="test">
+            <th onclick="sortTable(0)">Name</th>
+            <th onclick="sortTable(1)">School</th>
+            <th onclick="sortTable(2)">Game Played</th>
+            <th onclick="sortTable(3)">Score</th>            
+        </tr>
+    </table>
+
+    
+
+    <img src="bglgroup.jpg" class="bgl">
+</body>
+
+</html>
