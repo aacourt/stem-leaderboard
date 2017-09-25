@@ -1,0 +1,68 @@
+body {
+  background-color: black;
+}
+
+@font-face {
+  font-family: arcadeFont;
+  src: url(./ARCADECLASSIC.TTF);
+}
+
+h1{
+  color:yellow;
+  font-family: "arcadeFont";
+  font-size: 120px;
+  text-align: center;
+  padding-right: 50px;
+  margin: 0px;
+}
+
+img{
+  max-height: 100px;
+  max-width: 100px;
+  padding-right: 50px;
+  
+}
+
+.space{
+  float: left;
+  padding-top: 20px;
+}
+
+.pacman{
+  float: right;
+}
+
+.bgl{
+  float: right;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  max-width: 200px;
+  max-height: 200px;
+}
+
+
+table th{
+  font-family: "arcadeFont";    
+  color: red;
+  font-size: 50px;
+  cursor: pointer;
+}
+table td{
+  color: #75F94C;
+  text-align: center;
+  font-size: 30px;
+  font-family: "arcadeFont";
+}
+div.form {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 30px;
+}
+
+p{
+  color: yellow;
+  font-family: "arcadeFont";
+  margin: 10px;
+}
