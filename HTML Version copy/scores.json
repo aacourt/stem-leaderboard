@@ -1,17 +1,26 @@
 [
     {
         "name": "Bob",
-        "school": "Schoo",
-        "score": 11
+        "school": "School",
+        "aesthetics": 7,
+        "functionality": 8,
+        "innovation": 6,
+        "gameScore": 9
     },
     {
         "name": "Ted",
-        "school": "Schoo",
-        "score": 15
+        "school": "School",
+        "aesthetics": 4,
+        "functionality": 8,
+        "innovation": 20,
+        "gameScore": 20
     },
     {
         "name": "Jess",
-        "school": "Schoo",
-        "score": 14
+        "school": "School",
+        "aesthetics": 10,
+        "functionality": 10,
+        "innovation": 10,
+        "gameScore": 10
     }
 ]

@@ -13,10 +13,10 @@
                 
                 scores
                     .sort(function (a,b) {
-                        return b.score - a.score
+                        return (b.aesthetics + b.functionality + b.innovation + b.gameScore) - (a.aesthetics + a.functionality + a.innovation + a.gameScore)
                     })
                     .forEach(function(score) {
-                        createRow(score.name, score.school, score.game, score.score )
+                        createRow(score.name, score.school, score.aesthetics, score.functionality, score.innovation, score.gameScore, (score.aesthetics + score.functionality + score.innovation + score.gameScore))
                     })
             })
 
@@ -34,16 +34,16 @@
         // }
         
             
-        function addRow() {
-            name= document.getElementById('name').value;
-            school= document.getElementById('school').value;
-            game= document.getElementById('game').value;
-            score= document.getElementById('score').value;
+       // function addRow() {
+       //     name= document.getElementById('name').value;
+       //     school= document.getElementById('school').value;
+       //      game= document.getElementById('game').value;
+       //     score= document.getElementById('score').value;
 
-            createRow(name, school, game, score)
-        }
+       //     createRow(name, school, game, score)
+       // }
 
-   function createRow(name, school, game, score)
+   function createRow(name, school, aesthetics, functionality, innovation, gameScore, TotalScore)
 {
          tabBody=document.getElementsByTagName("tbody").item(0);
          row=document.createElement("tr");
@@ -51,6 +51,9 @@
          cell2 = document.createElement("td");
          cell3 = document.createElement("td");
          cell4 = document.createElement("td");
+         cell5 = document.createElement("td");
+         cell6 = document.createElement("td");
+         cell7 = document.createElement("td");
 
         // nameatt = document.createAttribute("contenteditable");
         // nameatt.value='true';
@@ -69,16 +72,25 @@
 
          textnode1=document.createTextNode(name);
          textnode2=document.createTextNode(school);
-         textnode3=document.createTextNode(game);
-         textnode4=document.createTextNode(score);
+         textnode3=document.createTextNode(aesthetics);
+         textnode4=document.createTextNode(functionality);
+         textnode5=document.createTextNode(innovation);
+         textnode6=document.createTextNode(gameScore);
+         textnode7=document.createTextNode(TotalScore);
          cell1.appendChild(textnode1);
          cell2.appendChild(textnode2);
          cell3.appendChild(textnode3);
          cell4.appendChild(textnode4);
+         cell5.appendChild(textnode5);
+         cell6.appendChild(textnode6);
+         cell7.appendChild(textnode7);
          row.appendChild(cell1);
          row.appendChild(cell2);
          row.appendChild(cell3);
          row.appendChild(cell4);
+         row.appendChild(cell5);
+         row.appendChild(cell6);
+         row.appendChild(cell7);
          tabBody.appendChild(row);
 
          //document.getElementById('name').value = '';
@@ -153,8 +165,11 @@
         <tr class="test">
             <th onclick="sortTable(0)">Name</th>
             <th onclick="sortTable(1)">School</th>
-            <th onclick="sortTable(2)">Game Played</th>
-            <th onclick="sortTable(3)">Score</th>            
+            <th onclick="sortTable(2)">Aesthetics</th>
+            <th onclick="sortTable(3)">Innovation</th> 
+            <th onclick="sortTable(4)">Functionality</th> 
+            <th onclick="sortTable(5)">Game Score</th>  
+            <th onclick="sortTable(6)">Total Score</th>                                
         </tr>
     </table>
 
